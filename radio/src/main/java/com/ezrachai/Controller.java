@@ -1,11 +1,15 @@
 package com.ezrachai;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -16,11 +20,13 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class Controller {
+public class Controller implements Initializable {
     @FXML
     private Label myLabel;
     @FXML
     private Label myLabelDate;
+    @FXML
+    private Label myLabelFood;
 
     @FXML
     private Pane myPane;
@@ -37,6 +43,11 @@ public class Controller {
 
     @FXML
     private ColorPicker myColorPicker;
+
+    @FXML
+    private ChoiceBox<String> myChoiceBox;
+
+    private String[] food = { "Pizza", "Sushi", "Ramen" };
 
     public void getFood(ActionEvent event) {
         if (myRadio1.isSelected()) {
@@ -58,4 +69,16 @@ public class Controller {
         Color myColor = myColorPicker.getValue();
         myPane.setBackground(new Background(new BackgroundFill(myColor, CornerRadii.EMPTY, Insets.EMPTY)));
     }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        myChoiceBox.getItems().addAll(food);
+        myChoiceBox.setOnAction(this::selectFood);
+    }
+
+    public void selectFood(ActionEvent event) {
+        String myFood = myChoiceBox.getValue();
+        myLabelFood.setText(myFood);
+    }
+
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -59,6 +60,16 @@
             <Insets />
          </VBox.margin>
       </Label>
-      <ColorPicker fx:id="myColorPicker" onAction="#changeBackgroundColor" />
+      <ColorPicker fx:id="myColorPicker" onAction="#changeBackgroundColor" prefHeight="35.0" prefWidth="139.0" />
+      <Label fx:id="myLabelFood" alignment="CENTER" contentDisplay="CENTER" text="Select the food that you want to eat" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <ChoiceBox fx:id="myChoiceBox" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </ChoiceBox>
    </children>
 </VBox>
