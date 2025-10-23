@@ -9,6 +9,7 @@ public class TodoItem {
     private String category;
     private String priority;
     private LocalDate dueDate;
+    private boolean done;
 
     public TodoItem(int id, String todo, String description, String category, String priority, LocalDate dueDate) {
         this.id = id;
@@ -43,6 +44,10 @@ public class TodoItem {
         return dueDate;
     }
 
+    public boolean getDone() {
+        return done;
+    }
+
     public void setTodo(String todo) {
         this.todo = todo;
     }
@@ -61,5 +66,9 @@ public class TodoItem {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 }
