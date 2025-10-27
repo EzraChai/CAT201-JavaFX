@@ -37,10 +37,11 @@
          <children>
             <TableView fx:id="todoListTableView" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Due Date" />
-                <TableColumn prefWidth="311.5" text="Title" />
-                  <TableColumn prefWidth="84.0" text="Priority" />
-                  <TableColumn prefWidth="88.5" text="Category" />
+                <TableColumn fx:id="dueDateColumn" prefWidth="103.0" text="Due Date" />
+                <TableColumn fx:id="todoColumn" prefWidth="147.0" text="Title" />
+                  <TableColumn fx:id="descColumn" prefWidth="149.5" text="Description" />
+                  <TableColumn fx:id="priorityColumn" prefWidth="77.5" text="Priority" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="82.0" text="Category" />
               </columns>
             </TableView>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
