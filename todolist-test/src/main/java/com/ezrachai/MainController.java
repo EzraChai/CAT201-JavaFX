@@ -6,14 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainController {
 
     @FXML
-    private ListView<TodoItem> todoListView;
+    private TableView<TodoItem> todoListTableView;
 
     public void openPopUp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assignment1.fxml"));
@@ -30,6 +30,6 @@ public class MainController {
     }
 
     public void addTodo(TodoItem todoItem) {
-        todoListView.getItems().add(todoItem);
+        todoListTableView.getItems().add(todoItem);
     }
 }

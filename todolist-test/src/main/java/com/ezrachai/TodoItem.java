@@ -65,6 +65,9 @@ public class TodoItem {
     }
 
     public void setDueDate(LocalDate dueDate) {
+        if (dueDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Due date cannot be in the past");
+        }
         this.dueDate = dueDate;
     }
 

@@ -1,11 +1,13 @@
 package com.ezrachai;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -35,6 +37,16 @@ public class PopupController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         priority.getItems().addAll(priorityItems);
         category.getItems().addAll(categoryItems);
+
+        // Disable user to select past date
+        dueDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
     }
 
     private MainController mainController;
