@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,6 +33,22 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<TodoItem, LocalDate> dueDateColumn;
 
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private DatePicker searchDueDate;
+
+    @FXML
+    private ComboBox<String> statusComboBox;
+
+    public String[] status = { "All", "Pending", "Completed" };
+
+    @FXML
+    private ComboBox<String> categoryComboBox;
+
+    public static String[] categoryItems = { "None", "Study", "Personal", "Family" };
+
     public void openPopUp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assignment1.fxml"));
         Parent root = loader.load();
@@ -47,6 +63,10 @@ public class MainController implements Initializable {
         popupStage.showAndWait();
     }
 
+    public void searchTodo() {
+        System.out.println(searchTextField.getText());
+    }
+
     public void addTodo(TodoItem todoItem) {
         todoListTableView.getItems().add(todoItem);
     }
@@ -58,5 +78,8 @@ public class MainController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+        statusComboBox.getItems().addAll(status);
+        categoryComboBox.getItems().addAll(categoryItems);
     }
 }

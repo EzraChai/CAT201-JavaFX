@@ -23,12 +23,12 @@ public class PopupController implements Initializable {
     @FXML
     private ComboBox<String> priority;
 
-    private String[] priorityItems = { "Urgent", "High", "Normal", "Low" };
+    public String[] priorityItems = { "Urgent", "High", "Normal", "Low" };
 
     @FXML
     private ComboBox<String> category;
 
-    private String[] categoryItems = { "Study", "Personal", "Personal", "Family" };
+    public String[] categoryItems = { "Study", "Personal", "Family" };
 
     @FXML
     private DatePicker dueDate;
