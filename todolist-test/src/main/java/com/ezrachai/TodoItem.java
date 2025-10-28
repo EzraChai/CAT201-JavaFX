@@ -9,7 +9,7 @@ public class TodoItem {
     private String category;
     private String priority;
     private LocalDate dueDate;
-    private boolean done;
+    private String status;
 
     public TodoItem(int id, String todo, String description, String category, String priority, LocalDate dueDate) {
         this.id = id;
@@ -18,6 +18,7 @@ public class TodoItem {
         this.category = category;
         this.priority = priority;
         this.dueDate = dueDate;
+        this.status = "Not Started";
     }
 
     public int getId() {
@@ -44,8 +45,8 @@ public class TodoItem {
         return dueDate;
     }
 
-    public boolean getDone() {
-        return done;
+    public String getStatus() {
+        return status;
     }
 
     public void setTodo(String todo) {
@@ -71,7 +72,15 @@ public class TodoItem {
         this.dueDate = dueDate;
     }
 
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setNextStatus() {
+        switch (status) {
+            case "Not Started":
+                status = "In Progress";
+                break;
+            case "In Progress":
+                status = "Completed";
+            default:
+                break;
+        }
     }
 }

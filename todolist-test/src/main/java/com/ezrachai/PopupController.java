@@ -23,7 +23,7 @@ public class PopupController implements Initializable {
     @FXML
     private ComboBox<String> priority;
 
-    public String[] priorityItems = { "Urgent", "High", "Normal", "Low" };
+    public String[] priorityItems = { "High", "Medium", "Low" };
 
     @FXML
     private ComboBox<String> category;
