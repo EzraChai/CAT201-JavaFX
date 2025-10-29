@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -83,11 +82,21 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0">
-              <buttons>
-                <Button mnemonicParsing="false" onAction="#openPopUp" text="Create Todo" />
-              </buttons>
-            </ButtonBar>
+            <HBox prefHeight="25.0" prefWidth="860.0">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="403.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="editButton" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#editTodo" prefHeight="27.0" prefWidth="90.0" text="Edit Todo" />
+                        <Button fx:id="deleteButton" contentDisplay="RIGHT" disable="true" mnemonicParsing="false" onAction="#deleteTodo" prefHeight="27.0" prefWidth="103.0" text="Delete Todo" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="699.0">
+                     <children>
+                      <Button mnemonicParsing="false" onAction="#openPopUp" prefWidth="94.0" text="Create Todo" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

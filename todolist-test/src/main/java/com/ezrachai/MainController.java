@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
@@ -59,6 +60,22 @@ public class MainController implements Initializable {
 
     private ObservableList<TodoItem> todoList = FXCollections.observableArrayList();
 
+    @FXML
+    private Button editButton;
+
+    @FXML
+    private Button deleteButton;
+
+    public void editTodo() {
+        TodoItem selected = todoListTableView.getSelectionModel().getSelectedItem();
+        System.out.println(selected);
+    }
+
+    public void deleteTodo() {
+        TodoItem selected = todoListTableView.getSelectionModel().getSelectedItem();
+
+    }
+
     public void openPopUp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assignment1.fxml"));
         Parent root = loader.load();
@@ -101,6 +118,7 @@ public class MainController implements Initializable {
             protected void updateItem(String priority, boolean empty) {
                 super.updateItem(priority, empty);
                 if (priority == null || empty) {
+                    setText(null);
                     setStyle("");
                 } else {
                     setText(priority);
@@ -123,6 +141,12 @@ public class MainController implements Initializable {
                     }
                 }
             }
+        });
+
+        todoListTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            // Enable button if a row is selected
+            editButton.setDisable(newSelection == null);
+            deleteButton.setDisable(newSelection == null);
         });
 
         statusColumn.setCellFactory(CheckBoxTableCell.forTableColumn(statusColumn));
