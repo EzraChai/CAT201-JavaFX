@@ -1,86 +1,114 @@
 package com.ezrachai;
 
+import javafx.beans.property.*;
 import java.time.LocalDate;
 
 public class TodoItem {
-    private int id;
-    private String todo;
-    private String description;
-    private String category;
-    private String priority;
-    private LocalDate dueDate;
-    private String status;
+    private final IntegerProperty id;
+    private final StringProperty todo;
+    private final StringProperty description;
+    private final StringProperty category;
+    private final StringProperty priority;
+    private final ObjectProperty<LocalDate> dueDate;
+    private final BooleanProperty status; // <- now a property
 
     public TodoItem(int id, String todo, String description, String category, String priority, LocalDate dueDate) {
-        this.id = id;
-        this.todo = todo;
-        this.description = description;
-        this.category = category;
-        this.priority = priority;
-        this.dueDate = dueDate;
-        this.status = "Not Started";
+        this.id = new SimpleIntegerProperty(id);
+        this.todo = new SimpleStringProperty(todo);
+        this.description = new SimpleStringProperty(description);
+        this.category = new SimpleStringProperty(category);
+        this.priority = new SimpleStringProperty(priority);
+        this.dueDate = new SimpleObjectProperty<>(dueDate);
+        this.status = new SimpleBooleanProperty(false); // default false
     }
 
+    // ID
     public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty idProperty() {
         return id;
     }
 
+    // Todo
     public String getTodo() {
+        return todo.get();
+    }
+
+    public void setTodo(String value) {
+        todo.set(value);
+    }
+
+    public StringProperty todoProperty() {
         return todo;
     }
 
+    // Description
     public String getDescription() {
+        return description.get();
+    }
+
+    public void setDescription(String value) {
+        description.set(value);
+    }
+
+    public StringProperty descriptionProperty() {
         return description;
     }
 
+    // Category
     public String getCategory() {
+        return category.get();
+    }
+
+    public void setCategory(String value) {
+        category.set(value);
+    }
+
+    public StringProperty categoryProperty() {
         return category;
     }
 
+    // Priority
     public String getPriority() {
+        return priority.get();
+    }
+
+    public void setPriority(String value) {
+        priority.set(value);
+    }
+
+    public StringProperty priorityProperty() {
         return priority;
     }
 
+    // DueDate
     public LocalDate getDueDate() {
+        return dueDate.get();
+    }
+
+    public void setDueDate(LocalDate value) {
+        if (value.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Due date cannot be in the past");
+        }
+        dueDate.set(value);
+    }
+
+    public ObjectProperty<LocalDate> dueDateProperty() {
         return dueDate;
     }
 
-    public String getStatus() {
+    // Status
+    public boolean isStatus() {
+        return status.get();
+    }
+
+    public void setStatus(boolean value) {
+        status.set(value);
+    }
+
+    public BooleanProperty statusProperty() {
         return status;
-    }
-
-    public void setTodo(String todo) {
-        this.todo = todo;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        if (dueDate.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("Due date cannot be in the past");
-        }
-        this.dueDate = dueDate;
-    }
-
-    public void setNextStatus() {
-        switch (status) {
-            case "Not Started":
-                status = "In Progress";
-                break;
-            case "In Progress":
-                status = "Completed";
-            default:
-                break;
-        }
     }
 }

@@ -70,14 +70,14 @@
                   <Insets top="40.0" />
                </padding>
             </HBox>
-            <TableView fx:id="todoListTableView" prefHeight="333.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="todoListTableView" editable="true" prefHeight="333.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="todoColumn" editable="false" prefWidth="249.0" resizable="false" sortable="false" text="Title" />
-                  <TableColumn fx:id="descColumn" editable="false" prefWidth="177.5" resizable="false" sortable="false" text="Description" />
-                <TableColumn fx:id="dueDateColumn" editable="false" prefWidth="110.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Due Date" />
-                  <TableColumn fx:id="priorityColumn" editable="false" prefWidth="110.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Priority" />
-                  <TableColumn fx:id="categoryColumn" editable="false" prefWidth="102.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Category" />
-                  <TableColumn fx:id="statusColumn" editable="false" prefWidth="109.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Status" />
+                <TableColumn fx:id="todoColumn" prefWidth="249.0" resizable="false" sortable="false" text="Title" />
+                  <TableColumn fx:id="descColumn" prefWidth="177.5" resizable="false" sortable="false" text="Description" />
+                <TableColumn fx:id="dueDateColumn" prefWidth="110.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Due Date" />
+                  <TableColumn fx:id="priorityColumn" prefWidth="110.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Priority" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="102.5" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Category" />
+                  <TableColumn fx:id="statusColumn" prefWidth="109.0" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Completed" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

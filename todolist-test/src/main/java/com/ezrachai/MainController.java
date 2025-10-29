@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,12 +16,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -38,7 +39,7 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<TodoItem, LocalDate> dueDateColumn;
     @FXML
-    private TableColumn<TodoItem, String> statusColumn;
+    private TableColumn<TodoItem, Boolean> statusColumn;
 
     @FXML
     private TextField searchTextField;
@@ -49,12 +50,14 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox<String> statusComboBox;
 
-    public String[] status = { "All", "Not Started", "In Progress", "Completed" };
+    public String[] status = { "All", "Not Started", "Completed" };
 
     @FXML
     private ComboBox<String> categoryComboBox;
 
-    public static String[] categoryItems = { "", "Study", "Personal", "Family" };
+    public String[] categoryItems = { "", "Study", "Personal", "Family" };
+
+    private ObservableList<TodoItem> todoList = FXCollections.observableArrayList();
 
     public void openPopUp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("assignment1.fxml"));
@@ -75,7 +78,8 @@ public class MainController implements Initializable {
     }
 
     public void addTodo(TodoItem todoItem) {
-        todoListTableView.getItems().add(todoItem);
+        todoList.add(todoItem);
+        todoListTableView.setItems(todoList);
     }
 
     @Override
@@ -121,34 +125,6 @@ public class MainController implements Initializable {
             }
         });
 
-        statusColumn.setCellFactory(col -> new TableCell<>() {
-            @Override
-            protected void updateItem(String status, boolean empty) {
-                super.updateItem(status, empty);
-                if (status == null || empty) {
-                    setStyle("");
-                } else {
-                    setText(status);
-                    setAlignment(Pos.CENTER);
-                    switch (status.toLowerCase()) {
-                        case "not started":
-                            setStyle("-fx-background-color: #ffcccc;");
-                            setTextFill(Color.RED);
-                            break;
-                        case "in progress":
-                            setStyle("-fx-background-color: #fff2cc;");
-                            setTextFill(Color.ORANGE);
-                            break;
-                        case "completed":
-                            setStyle("-fx-background-color: #ccffcc;");
-                            setTextFill(Color.GREEN);
-                            break;
-                        default:
-                            break;
-
-                    }
-                }
-            }
-        });
+        statusColumn.setCellFactory(CheckBoxTableCell.forTableColumn(statusColumn));
     }
 }
