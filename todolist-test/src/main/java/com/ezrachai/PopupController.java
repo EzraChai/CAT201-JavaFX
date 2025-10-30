@@ -37,6 +37,8 @@ public class PopupController implements Initializable {
     @FXML
     private Button addButton;
 
+    private TodoItem editingTodo;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         priority.getItems().addAll(priorityItems);
@@ -65,16 +67,27 @@ public class PopupController implements Initializable {
     }
 
     public void setTodoData(TodoItem todoItem) {
+        editingTodo = todoItem;
         todo.setText(todoItem.getTodo());
         description.setText(todoItem.getDescription());
         priority.setValue(todoItem.getPriority());
         category.setValue(todoItem.getCategory());
         dueDate.setValue(todoItem.getDueDate());
 
-        addButton.setText("Edit Todo");
+        addButton.setText("Save Todo");
     }
 
     public void addTodo() {
+        if (editingTodo != null) {
+            editingTodo.setTodo(todo.getText().trim());
+            editingTodo.setDescription(description.getText().trim());
+            editingTodo.setCategory(category.getValue());
+            editingTodo.setPriority(priority.getValue());
+            editingTodo.setDueDate(dueDate.getValue());
+            Stage stage = (Stage) todo.getScene().getWindow();
+            stage.close();
+            return;
+        }
         TodoItem newTodoItem = new TodoItem(0, todo.getText().trim(), description.getText().trim(), category.getValue(),
                 priority.getValue(), dueDate.getValue());
         mainController.addTodo(newTodoItem);

@@ -109,7 +109,7 @@ public class MainController implements Initializable {
     }
 
     public void addTodo(TodoItem todoItem) {
-        todoList.add(todoItem);
+        todoList.add(0, todoItem);
         todoListTableView.setItems(todoList);
     }
 
