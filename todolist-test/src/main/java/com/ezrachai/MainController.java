@@ -66,9 +66,23 @@ public class MainController implements Initializable {
     @FXML
     private Button deleteButton;
 
-    public void editTodo() {
+    public void editTodo() throws IOException {
         TodoItem selected = todoListTableView.getSelectionModel().getSelectedItem();
-        System.out.println(selected);
+        if (selected == null) {
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("assignment1.fxml"));
+        Parent root = loader.load();
+        PopupController popupController = loader.getController();
+        popupController.setMainController(this);
+        popupController.setTodoData(selected);
+
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Edit Todo");
+        popupStage.setScene(new Scene(root));
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.showAndWait();
     }
 
     public void deleteTodo() {
@@ -84,7 +98,7 @@ public class MainController implements Initializable {
         popupController.setMainController(this);
 
         Stage popupStage = new Stage();
-        popupStage.setTitle("Add Todo Item");
+        popupStage.setTitle("Add Todo");
         popupStage.setScene(new Scene(root));
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.showAndWait();

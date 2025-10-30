@@ -64,6 +64,16 @@ public class PopupController implements Initializable {
         this.mainController = mainController;
     }
 
+    public void setTodoData(TodoItem todoItem) {
+        todo.setText(todoItem.getTodo());
+        description.setText(todoItem.getDescription());
+        priority.setValue(todoItem.getPriority());
+        category.setValue(todoItem.getCategory());
+        dueDate.setValue(todoItem.getDueDate());
+
+        addButton.setText("Edit Todo");
+    }
+
     public void addTodo() {
         TodoItem newTodoItem = new TodoItem(0, todo.getText().trim(), description.getText().trim(), category.getValue(),
                 priority.getValue(), dueDate.getValue());
