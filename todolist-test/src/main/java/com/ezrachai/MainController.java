@@ -73,7 +73,7 @@ public class MainController implements Initializable {
 
     public void deleteTodo() {
         TodoItem selected = todoListTableView.getSelectionModel().getSelectedItem();
-
+        todoList.remove(selected);
     }
 
     public void openPopUp() throws IOException {

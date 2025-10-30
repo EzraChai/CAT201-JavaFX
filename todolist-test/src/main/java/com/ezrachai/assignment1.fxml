@@ -47,7 +47,7 @@
    <children>
       <VBox prefHeight="0.0" prefWidth="528.0">
          <children>
-            <Label text="Todo" />
+            <Label text="Todo *" />
             <TextField fx:id="todo" prefHeight="27.0" prefWidth="528.0" />
          </children>
       </VBox>
@@ -61,19 +61,19 @@
          <children>
             <VBox prefHeight="45.0" prefWidth="150.0">
                <children>
-                  <Label text="Priority" />
+                  <Label text="Priority *" />
                   <ComboBox fx:id="priority" prefWidth="150.0" />
                </children>
             </VBox>
             <VBox prefHeight="45.0" prefWidth="138.0">
                <children>
-                  <Label text="Category" />
+                  <Label text="Category *" />
                   <ComboBox fx:id="category" prefHeight="27.0" prefWidth="137.0" />
                </children>
             </VBox>
             <VBox prefHeight="45.0" prefWidth="203.0">
                <children>
-                  <Label text="Due Date" />
+                  <Label text="Due Date *" />
                   <DatePicker fx:id="dueDate" prefHeight="27.0" prefWidth="204.0" />
                </children>
             </VBox>
@@ -81,7 +81,7 @@
       </HBox>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#addTodo" text="Add Todo" />
+          <Button fx:id="addButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo" />
         </buttons>
       </ButtonBar>
    </children>

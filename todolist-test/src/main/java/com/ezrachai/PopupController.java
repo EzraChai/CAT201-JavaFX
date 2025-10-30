@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -33,6 +34,9 @@ public class PopupController implements Initializable {
     @FXML
     private DatePicker dueDate;
 
+    @FXML
+    private Button addButton;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         priority.getItems().addAll(priorityItems);
@@ -43,10 +47,15 @@ public class PopupController implements Initializable {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
-
                 setDisable(empty || date.compareTo(today) < 0);
             }
         });
+
+        addButton.disableProperty().bind(
+                todo.textProperty().isEmpty()
+                        .or(priority.valueProperty().isNull())
+                        .or(category.valueProperty().isNull())
+                        .or(dueDate.valueProperty().isNull()));
     }
 
     private MainController mainController;
