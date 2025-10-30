@@ -3,6 +3,7 @@ package com.ezrachai;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -88,7 +89,8 @@ public class PopupController implements Initializable {
             stage.close();
             return;
         }
-        TodoItem newTodoItem = new TodoItem(0, todo.getText().trim(), description.getText().trim(), category.getValue(),
+        TodoItem newTodoItem = new TodoItem(UUID.randomUUID().toString(), todo.getText().trim(),
+                description.getText().trim(), category.getValue(),
                 priority.getValue(), dueDate.getValue());
         mainController.addTodo(newTodoItem);
         Stage stage = (Stage) todo.getScene().getWindow();

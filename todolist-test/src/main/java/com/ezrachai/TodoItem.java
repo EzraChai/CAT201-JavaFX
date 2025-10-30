@@ -4,7 +4,7 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 
 public class TodoItem {
-    private final IntegerProperty id;
+    private final StringProperty id;
     private final StringProperty todo;
     private final StringProperty description;
     private final StringProperty category;
@@ -12,8 +12,8 @@ public class TodoItem {
     private final ObjectProperty<LocalDate> dueDate;
     private final BooleanProperty status; // <- now a property
 
-    public TodoItem(int id, String todo, String description, String category, String priority, LocalDate dueDate) {
-        this.id = new SimpleIntegerProperty(id);
+    public TodoItem(String id, String todo, String description, String category, String priority, LocalDate dueDate) {
+        this.id = new SimpleStringProperty(id);
         this.todo = new SimpleStringProperty(todo);
         this.description = new SimpleStringProperty(description);
         this.category = new SimpleStringProperty(category);
@@ -23,11 +23,11 @@ public class TodoItem {
     }
 
     // ID
-    public int getId() {
+    public String getId() {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
+    public StringProperty idProperty() {
         return id;
     }
 
